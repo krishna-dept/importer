@@ -56,5 +56,11 @@
     "components": [
       "table-item"
     ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tab"
+    ]
   }
 ]

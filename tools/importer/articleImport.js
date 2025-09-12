@@ -15,13 +15,14 @@ function test(document, WebImporter, main) {
 
   const hero = WebImporter.DOMUtils.createTable(heroCells, document);
 
-  const tabsCells = [
-    ['Tabs'],
-  ];
+  //   const tabsCells = [
+  //     ['Tabs'],
+  //     ['Tab 1', 'Tab 2'],
+  //   ];
 
-  const tabs = WebImporter.DOMUtils.createTable(tabsCells, document);
+  //   const tabs = WebImporter.DOMUtils.createTable(tabsCells, document);
 
-  main.prepend(tabs);
+  //   main.prepend(tabs);
   main.prepend(hero);
 }
 

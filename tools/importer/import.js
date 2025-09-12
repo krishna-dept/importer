@@ -41,6 +41,7 @@ export default {
       '.footer',
       'iframe',
       'noscript',
+      'blockquote',
     ]);
 
     WebImporter.rules.createMetadata(main, document);
@@ -49,6 +50,15 @@ export default {
     WebImporter.rules.convertIcons(main, document);
 
     test(document, WebImporter, main);
+
+    const title = document.querySelector('h1');
+    const img = document.querySelector('img');
+    const cells = [
+      ['Tabs'],
+      [title, img],
+    ];
+    const table = WebImporter.DOMUtils.createTable(cells, document);
+    main.prepend(table);
 
     return main;
   },
