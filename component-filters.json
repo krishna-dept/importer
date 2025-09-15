@@ -15,13 +15,7 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "tabs",
-      "accordions",
-      "form",
-      "carousel",
-      "table",
-      "travel-details-form"
+      "fragment"
     ]
   },
   {
@@ -37,30 +31,12 @@
     ]
   },
   {
-    "id": "accordions",
-    "components": [
-      "accordion"
-    ]
-  },
-  {
     "id": "column",
     "components": [
       "text",
       "image",
       "button",
       "title"
-    ]
-  },
-  {
-    "id": "table-item",
-    "components": [
-      "table-item"
-    ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "tab"
     ]
   }
 ]

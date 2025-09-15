@@ -152,49 +152,17 @@
         "multi": false
       },
       {
+        "component": "text",
+        "name": "tag",
+        "label": "Tag",
+        "valueType": "string"
+      },
+      {
         "component": "richtext",
         "name": "text",
         "value": "",
         "label": "Text",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "tab",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Heading"
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Body"
-      }
-    ]
-  },
-  {
-    "id": "accordion",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "value": "",
-        "label": "Heading"
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "content",
-        "value": "",
-        "label": "Body"
       }
     ]
   },
@@ -228,37 +196,6 @@
     ]
   },
   {
-    "id": "form",
-    "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "form Style",
-        "options": [
-          {
-            "name": "Pagination",
-            "value": "pagination"
-          }
-        ]
-      },
-      {
-        "component": "aem-content",
-        "name": "form_url",
-        "label": "Form URL"
-      },
-      {
-        "component": "text",
-        "name": "form_api",
-        "label": "Form API"
-      },
-      {
-        "component": "text",
-        "name": "form_id",
-        "label": "Form ID"
-      }
-    ]
-  },
-  {
     "id": "hero",
     "fields": [
       {
@@ -281,60 +218,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "carousel",
-    "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Carousel Style",
-        "options": [
-          {
-            "name": "Pagination",
-            "value": "pagination"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "carousel-item",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "image",
-        "label": "Image",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "text",
-        "value": "",
-        "label": "Text",
-        "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "table",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "headerRow",
-        "label": "Header Row",
-        "description": "Comma-separated list of header names (e.g., Name, Age, Occupation)."
-      },
-      {
-        "component": "richtext",
-        "name": "tableRows",
-        "valueType": "string",
-        "label": "Table Rows",
-        "description": "Each row should be on a new line, with columns separated by commas (e.g., John Doe, 30, Engineer)."
       }
     ]
   }

@@ -43,6 +43,12 @@
           "multi": false
         },
         {
+          "component": "text",
+          "name": "tag",
+          "label": "Tag",
+          "valueType": "string"
+        },
+        {
           "component": "richtext",
           "name": "text",
           "value": "",

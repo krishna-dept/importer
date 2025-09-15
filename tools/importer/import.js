@@ -12,7 +12,7 @@
 /* global WebImporter */
 /* eslint-disable no-console, class-methods-use-this */
 
-import test from './articleImport.js';
+import BlockBuilder from './BlockBuilder.js';
 
 export default {
   /**
@@ -49,16 +49,52 @@ export default {
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
-    test(document, WebImporter, main);
+    const hero = new BlockBuilder({
+      name: 'Hero',
+      blockRows: [
+        ['#articleCoverImage'],
+        ['.article_caption'],
+      ],
+    });
 
-    const title = document.querySelector('h1');
-    const img = document.querySelector('img');
-    const cells = [
-      ['Tabs'],
-      [title, img],
-    ];
-    const table = WebImporter.DOMUtils.createTable(cells, document);
-    main.prepend(table);
+    const blogCards = new BlockBuilder({
+      name: 'Cards',
+      block: 'body > div.wrapper > main > div:nth-child(3) > div > div > div:nth-child(2)', // outer container
+      blockItem: '.col-sm-12.col-md-6.col-lg-4.mb-4',
+      itemRows: [
+        ['.article_img img'],
+        ['.tag'],
+        [
+          (el, document) => {
+            // find the caption
+            const caption = el.querySelector('.article_caption');
+            if (!caption) return '';
+
+            // find the bottom row inside caption
+            const row = caption.querySelector('.row.align-items-end');
+            if (row) {
+              const ul = document.createElement('ul');
+
+              // take each child div and wrap into <li>
+              [...row.children].forEach((div) => {
+                const li = document.createElement('li');
+                li.innerHTML = div.innerHTML; // preserve inner content
+                ul.appendChild(li);
+              });
+
+              // replace row with ul
+              row.replaceWith(ul);
+            }
+
+            return caption;
+          },
+        ],
+      ],
+    });
+
+    // In your transformDOM:
+    [hero].forEach((block) => block.cellMaker(main, document));
+    [blogCards].forEach((block) => block.cellMaker(main, document));
 
     return main;
   },
