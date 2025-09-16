@@ -62,7 +62,21 @@ export default {
       block: 'body > div.wrapper > main > div:nth-child(3) > div > div > div:nth-child(2)', // outer container
       blockItem: '.col-sm-12.col-md-6.col-lg-4.mb-4',
       itemRows: [
-        ['.article_img img'],
+        [ // Image: move anchor above image
+          (item, document) => {
+            const imgAnchor = item.querySelector('.article_img a');
+            if (!imgAnchor) return '';
+
+            const img = imgAnchor.querySelector('img');
+            if (!img) return '';
+
+            // remove image from anchor and place anchor above image
+            imgAnchor.replaceWith(img);
+            item.querySelector('.article_img').prepend(imgAnchor);
+
+            return img;
+          },
+        ],
         ['.tag'],
         [
           (el, document) => {
