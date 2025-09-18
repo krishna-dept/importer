@@ -80,8 +80,8 @@ export default {
     });
 
     const bodyContent = new BlockBuilder({
-      name: 'Text',
-      block: '.paragraph',
+      name: 'Content',
+      block: '.col-sm-12',
       blockRows: ['.paragraph'],
     });
 
@@ -136,7 +136,9 @@ export default {
     });
 
     // In your transformDOM:
-    [hero, bodyContent, blogCards].forEach((block) => block.cellMaker(main, document));
+    // [hero, blogCards].forEach((block) => block.cellMaker(main, document));
+
+    bodyContent.cellMaker(main, document);
     return main;
   },
 
