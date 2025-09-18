@@ -51,18 +51,47 @@ export default {
 
     const hero = new BlockBuilder({
       name: 'Hero',
+      block: '.article_card',
       blockRows: [
         ['#articleCoverImage'],
-        ['.article_caption'],
+        [
+          (el) => {
+            const herotext = el.querySelector('.article_card:first-of-type');
+            if (herotext) {
+              const desp = el.querySelector('div.d-md-flex');
+
+              if (desp) {
+                const ul = document.createElement('ul');
+
+                Array.from(desp.children).forEach((child) => {
+                  const li = document.createElement('li');
+                  li.appendChild(child);
+                  ul.appendChild(li);
+                });
+
+                desp.replaceWith(ul);
+              }
+              return herotext;
+            }
+            return '';
+          },
+        ],
       ],
+    });
+
+    const bodyContent = new BlockBuilder({
+      name: 'Text',
+      block: '.paragraph',
+      blockRows: ['.paragraph'],
     });
 
     const blogCards = new BlockBuilder({
       name: 'Cards',
-      block: 'body > div.wrapper > main > div:nth-child(3) > div > div > div:nth-child(2)', // outer container
+      block: 'body > div.wrapper > main > div:nth-child(3) > div > div',
+      blockRows: ['.row .col', '.row a'],
       blockItem: '.col-sm-12.col-md-6.col-lg-4.mb-4',
       itemRows: [
-        [ // Image: move anchor above image
+        [
           (item, document) => {
             const imgAnchor = item.querySelector('.article_img a');
             if (!imgAnchor) return '';
@@ -107,9 +136,7 @@ export default {
     });
 
     // In your transformDOM:
-    [hero].forEach((block) => block.cellMaker(main, document));
-    [blogCards].forEach((block) => block.cellMaker(main, document));
-
+    [hero, bodyContent, blogCards].forEach((block) => block.cellMaker(main, document));
     return main;
   },
 

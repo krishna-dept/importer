@@ -33,6 +33,51 @@
   ],
   "models": [
     {
+      "id": "cards",
+      "fields": [
+        {
+          "component": "text",
+          "name": "col1_title",
+          "label": "Title",
+          "valueType": "string"
+        },
+        {
+          "component": "aem-content",
+          "name": "col2_link",
+          "label": "Link"
+        },
+        {
+          "component": "text",
+          "name": "col2_linkText",
+          "label": "Text"
+        },
+        {
+          "component": "text",
+          "name": "col2_linkTitle",
+          "label": "Title"
+        },
+        {
+          "component": "select",
+          "name": "col2_linkType",
+          "label": "Type",
+          "options": [
+            {
+              "name": "default",
+              "value": ""
+            },
+            {
+              "name": "primary",
+              "value": "primary"
+            },
+            {
+              "name": "secondary",
+              "value": "secondary"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "card",
       "fields": [
         {

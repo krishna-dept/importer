@@ -1,3 +1,8 @@
+AEM Upload Script:
+npm run aem-upload -- --token C:\Users\krishna.mulik\Downloads\importer\token.txt --zip C:\Users\krishna.mulik\Downloads\importer\importer_10-documents-to-keep-ready-to-file-income-tax-returns.zip --asset-mapping C:\Users\krishna.mulik\Downloads\importer\asset-mapping.json --target https://author-p48457-e1275402.adobeaemcloud.com --keep
+
+
+
 Example 1: Hero block with 1 row, 1 column (h1 only)
 const hero = new BlockBuilder({
   name: 'Hero',
