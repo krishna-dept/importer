@@ -182,14 +182,7 @@
                 "template": {
                   "name": "Teaser",
                   "model": "teaser",
-                  "fileReference": "/content/dam/default-teaser-banner.png",
-                  "title": "Teaser Title",
-                  "titleType": "h3",
-                  "longDescr": "<p>Teaser Description</p>",
-                  "classes": [
-                    "light",
-                    "left"
-                  ]
+                  "fileReference": "/content/dam/default-teaser-banner.png"
                 }
               }
             }
