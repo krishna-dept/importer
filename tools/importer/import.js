@@ -35,8 +35,6 @@ export default {
     WebImporter.DOMUtils.remove(main, [
       'header',
       '.header',
-      'nav',
-      '.nav',
       'footer',
       '.footer',
       'iframe',
@@ -49,96 +47,119 @@ export default {
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
     WebImporter.rules.convertIcons(main, document);
 
-    const hero = new BlockBuilder({
-      name: 'Hero',
-      block: '.article_card',
-      blockRows: [
-        ['#articleCoverImage'],
-        [
-          (el) => {
-            const herotext = el.querySelector('.article_card:first-of-type');
-            if (herotext) {
-              const desp = el.querySelector('div.d-md-flex');
-
-              if (desp) {
-                const ul = document.createElement('ul');
-
-                Array.from(desp.children).forEach((child) => {
-                  const li = document.createElement('li');
-                  li.appendChild(child);
-                  ul.appendChild(li);
-                });
-
-                desp.replaceWith(ul);
-              }
-              return herotext;
-            }
-            return '';
-          },
-        ],
-      ],
-    });
-
-    const bodyContent = new BlockBuilder({
+    const breadcrumb = new BlockBuilder({
       name: 'Content',
-      block: '.col-sm-12',
-      blockRows: ['.paragraph'],
-    });
-
-    const blogCards = new BlockBuilder({
-      name: 'Cards',
-      block: 'body > div.wrapper > main > div:nth-child(3) > div > div',
-      blockRows: ['.row .col', '.row a'],
-      blockItem: '.col-sm-12.col-md-6.col-lg-4.mb-4',
-      itemRows: [
-        [
-          (item, document) => {
-            const imgAnchor = item.querySelector('.article_img a');
-            if (!imgAnchor) return '';
-
-            const img = imgAnchor.querySelector('img');
-            if (!img) return '';
-
-            // remove image from anchor and place anchor above image
-            imgAnchor.replaceWith(img);
-            item.querySelector('.article_img').prepend(imgAnchor);
-
-            return img;
-          },
-        ],
-        ['.tag'],
-        [
-          (el, document) => {
-            // find the caption
-            const caption = el.querySelector('.article_caption');
-            if (!caption) return '';
-
-            // find the bottom row inside caption
-            const row = caption.querySelector('.row.align-items-end');
-            if (row) {
-              const ul = document.createElement('ul');
-
-              // take each child div and wrap into <li>
-              [...row.children].forEach((div) => {
-                const li = document.createElement('li');
-                li.innerHTML = div.innerHTML; // preserve inner content
-                ul.appendChild(li);
-              });
-
-              // replace row with ul
-              row.replaceWith(ul);
-            }
-
-            return caption;
-          },
-        ],
+      block: '.breadcrumb_wrapp',
+      blockRows: ['nav'],
+      sectionMeta: [
+        ['Section Metadata'],
+        ['style', 'default'],
       ],
-    });
+    }).cellMaker(main, document);
+
+    // const hero = new BlockBuilder({
+    //   name: 'Hero',
+    //   block: '.article_wraper',
+    //   blockRows: [
+    //     ['#articleCoverImage'],
+    //     [
+    //       (el) => {
+    //         const herotext = el.querySelector('.article_caption ');
+    //         if (herotext) {
+    //           const desp = el.querySelector('div.d-md-flex');
+
+    //           if (desp) {
+    //             const ul = document.createElement('ul');
+
+    //             Array.from(desp.children).forEach((child) => {
+    //               const li = document.createElement('li');
+    //               li.appendChild(child);
+    //               ul.appendChild(li);
+    //             });
+
+    //             desp.replaceWith(ul);
+    //           }
+    //           return herotext;
+    //         }
+    //         return '';
+    //       },
+    //     ],
+    //   ],
+    // });
+
+    // const blogCards = new BlockBuilder({
+    //   name: 'Cards',
+    //   block: 'body > div.wrapper > main > div:nth-child(3) > div > div',
+    //   blockRows: ['.row .col', '.row a'],
+    //   blockItem: '.col-sm-12.col-md-6.col-lg-4.mb-4',
+    //   itemRows: [
+    //     [
+    //       (item, document) => {
+    //         const imgAnchor = item.querySelector('.article_img a');
+    //         if (!imgAnchor) return '';
+
+    //         const img = imgAnchor.querySelector('img');
+    //         if (!img) return '';
+
+    //         // remove image from anchor and place anchor above image
+    //         imgAnchor.replaceWith(img);
+    //         item.querySelector('.article_img').prepend(imgAnchor);
+
+    //         return img;
+    //       },
+    //     ],
+    //     ['.tag'],
+    //     [
+    //       (el, document) => {
+    //         // find the caption
+    //         const caption = el.querySelector('.article_caption');
+    //         if (!caption) return '';
+
+    //         // find the bottom row inside caption
+    //         const row = caption.querySelector('.row.align-items-end');
+    //         if (row) {
+    //           const ul = document.createElement('ul');
+
+    //           // take each child div and wrap into <li>
+    //           [...row.children].forEach((div) => {
+    //             const li = document.createElement('li');
+    //             li.innerHTML = div.innerHTML; // preserve inner content
+    //             ul.appendChild(li);
+    //           });
+
+    //           // replace row with ul
+    //           row.replaceWith(ul);
+    //         }
+
+    //         return caption;
+    //       },
+    //     ],
+    //   ],
+    // });
 
     // In your transformDOM:
-    // [hero, blogCards].forEach((block) => block.cellMaker(main, document));
+    // [breadcrumb, hero, blogCards].forEach((block) => block.cellMaker(main, document));
 
-    bodyContent.cellMaker(main, document);
+    // const breadcrumbel = document.querySelector('.wrapper');
+    // breadcrumbel.after(document.createElement('hr'));
+    // const sectionMeta = [
+    //   ['Section Metadata'],
+    //   ['style', 'default'],
+    // ];
+
+    // const hr = document.querySelector('hr');
+
+    // const sectionMetaTable = WebImporter.DOMUtils.createTable(sectionMeta, document);
+    // hr.after(sectionMetaTable);
+
+    // const mySection = [
+    //   ['Section'],
+    //   ['Style', 'default'],
+    // ];
+    // const sectionTable = WebImporter.DOMUtils.createTable(mySection, document);
+    // hr.after(sectionTable);
+
+    // console.log('main', main);
     return main;
   },
 
