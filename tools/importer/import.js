@@ -13,6 +13,7 @@
 /* eslint-disable no-console, class-methods-use-this */
 
 import BlockBuilder from './BlockBuilder.js';
+import sectionMaker from './utils/sectionMaker.js';
 
 export default {
   /**
@@ -160,6 +161,7 @@ export default {
     // hr.after(sectionTable);
 
     // console.log('main', main);
+    sectionMaker('h2', main);
     return main;
   },
 

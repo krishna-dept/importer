@@ -107,22 +107,32 @@ export default class BlockBuilder {
 
       const table = WebImporter.DOMUtils.createTable(cells, document);
 
-      // Insert the main block table
-      if (isRootFallback) {
-        main.insertBefore(table, main.firstChild);
-      } else if (parent) {
-        parent.insertBefore(table, el);
-      }
-
-      // === NEW LOGIC FOR SECTION METADATA ===
+      // === UPDATED INSERTION LOGIC ===
       if (this.sectionMeta) {
         const hr = document.createElement('hr');
-        table.after(hr); // Place hr after the main table
-
         const sectionMetaTable = WebImporter.DOMUtils.createTable(this.sectionMeta, document);
-        hr.after(sectionMetaTable); // Place metadata table after the hr
+
+        // 1. Insert the HR where the original element was
+        if (isRootFallback) {
+          main.insertBefore(hr, main.firstChild);
+        } else if (parent) {
+          parent.insertBefore(hr, el);
+        }
+
+        // 2. Insert the main table AFTER the HR
+        hr.after(table);
+
+        // 3. Insert the metadata table AFTER the main table
+        table.after(sectionMetaTable);
+      } else {
+        // Original behavior if no sectionMeta is present
+        if (isRootFallback) {
+          main.insertBefore(table, main.firstChild);
+        } else if (parent) {
+          parent.insertBefore(table, el);
+        }
       }
-      // === END NEW LOGIC ===
+      // === END UPDATED LOGIC ===
 
       createdTables.push(table);
 
