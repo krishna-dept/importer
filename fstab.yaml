@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://httpbin.org/html"
+    url: "https://httpbin.org"
     type: "markup"
     suffix: ".html"
