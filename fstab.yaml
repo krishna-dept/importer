@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://aif.nipponindiaim.com/"
+    url: "https://httpbin.org/html"
     type: "markup"
     suffix: ".html"
