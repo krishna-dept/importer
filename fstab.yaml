@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p48457-e1275402.adobeaemcloud.com/bin/franklin.delivery/krishna-dept/importer/main"
+    url: "http://localhost:3000/"
     type: "markup"
     suffix: ".html"
