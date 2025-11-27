@@ -2,4 +2,4 @@ mountpoints:
   /:
     url: "https://httpbin.org"
     type: "markup"
-    suffix: ".html"
+    # no suffix
