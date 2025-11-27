@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://httpbin.org"
+    url: "http://localhost:3001"
     type: "markup"
-    # no suffix
+    suffix: ".html"
