@@ -3,7 +3,3 @@ mountpoints:
     url: "https://author-p48457-e1275402.adobeaemcloud.com/bin/franklin.delivery/krishna-dept/importer/main"
     type: "markup"
     suffix: ".html"
-    
-overlays:
-  - url: "https://json2html.adobeaem.workers.dev/krishna-dept/importer/main"
-    type: "markup"
