@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "http://localhost:3000/"
+    url: "https://aif.nipponindiaim.com/"
     type: "markup"
     suffix: ".html"
